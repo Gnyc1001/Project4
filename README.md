@@ -18,8 +18,7 @@ Your app must be self-representative.  It should be a statement about you as a p
 
 Your app must:
 
-* **Build a full-stack application** by making your own backend and your own front-end
-* **Have an interactive front-end**, using React
+* **Showcase your skills** - This project should showcase your abilities as a front-end, back-end and/or full-stack developer. What this means is that it should be personal to you, and should be a representation of what you can do in terms of applying what you've learned, and/or demonstrating that you know how to pick something new up on the fly.
 * **Be a complete product** - this may mean multiple relationships and CRUD functionality for at least a couple models, it may not depending on your idea
 * **Implement thoughtful user stories** that are significant enough to help you know which features to build and which to scrap
 * **Have a visually impressive design** to kick your portfolio up a notch and have something to wow future clients & employers
