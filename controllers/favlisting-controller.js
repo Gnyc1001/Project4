@@ -3,6 +3,7 @@
 const FavListing = require('../models/favlisting')
 
 const favlistingController = {};
+
 //find all user listings by their user id
 favlistingController.findAll = (req, res) => {
     console.log('favlist all control')
@@ -15,6 +16,9 @@ favlistingController.findAll = (req, res) => {
     }).catch(err =>{
         console.log('control all error loc')
         console.log(err)
+        res.status(500).json({
+            message: 'all listings not found',
+        })
     })
 }
 
@@ -25,7 +29,7 @@ favlistingController.findOne = (req, res) => {
     FavListing.findbyId(req.body.id)
     .then(x =>{
         res.json({
-            message: "control one listing",
+            message: 'control one listing',
             data: x
         })
     }).catch(err =>{
@@ -34,12 +38,26 @@ favlistingController.findOne = (req, res) => {
     })
 }
 
+//create one favlisting by  user
+favlistingController.create = (req, res) => {
+    console.log(req.body.info)
+    FavListing.insert(req.body.info)
+    .then(x =>{
+        res.json({
+            message: 'control create one listing',
+            data: x
+        })
+    }).catch(err =>{
+        console.log('control create err loc')
+        console.log(err)
+    })
+}
 //delete one listing by user
-favlistingController.destroy = (req, res) => {
+favlistingController.delete = (req, res) => {
     console.log('favlist delete control')
     console.log(req.body.id)
-    FavListing.destroy(req.body.id)
-    .then( =>{
+    FavListing.delete(req.body.id)
+    .then(() =>{
         res.end();
     }).catch(err =>{
         console.log('control delete error loc')
@@ -47,20 +65,20 @@ favlistingController.destroy = (req, res) => {
     })
 }
 //update one listing by user
-favlistingController.update = (req, res) => {
-    FavListing.update({
-        //listing results
+// favlistingController.update = (req, res) => {
+//     FavListing.update({
+//         //listing results
 
-    }).then(x =>{
-        res.json({
-            message: 'favlisting edit comments',
-            data: x
-        })
-    }).catch(err =>{
-        console.log('control update error loc')
-        console.log(err)
-    })
-}
+//     }).then(x =>{
+//         res.json({
+//             message: 'favlisting edit comments',
+//             data: x
+//         })
+//     }).catch(err =>{
+//         console.log('control update error loc')
+//         console.log(err)
+//     })
+// }
 
 
 module.exports = favlistingController;

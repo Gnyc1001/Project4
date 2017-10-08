@@ -8,6 +8,6 @@ favlistingRoutes.get('/', favlistingController.findAll);
 favlistingRoutes.post('/:id', favlistingController.findOne);
 favlistingRoutes.post('/', favlistingController.create);
 favlistingRoutes.delete('/:id',favlistingController.delete);
-favlistingRoutes.put('/;id', favlistingController.update);
+// favlistingRoutes.put('/;id', favlistingController.update);
 
 module.exports = favlistingRoutes;
