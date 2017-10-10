@@ -64,21 +64,22 @@ favlistingController.delete = (req, res) => {
         console.log(err)
     })
 }
+
 //update one listing by user
-// favlistingController.update = (req, res) => {
-//     FavListing.update({
-//         //listing results
-
-//     }).then(x =>{
-//         res.json({
-//             message: 'favlisting edit comments',
-//             data: x
-//         })
-//     }).catch(err =>{
-//         console.log('control update error loc')
-//         console.log(err)
-//     })
-// }
-
+favlistingController.update = (req, res) => {
+    FavListing.update({
+        //listing results
+        comments: req.body.comments,
+        seenstatus: req.body.seenstatus
+    }).then(x =>{
+        res.json({
+            message: 'favlisting edit comments',
+            data: x
+        })
+    }).catch(err =>{
+        console.log('control update error loc')
+        console.log(err)
+    })
+}
 
 module.exports = favlistingController;
