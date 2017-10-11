@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer'
-
-class Listings extends Component {
+//show all listings non added
+class ListingsAll extends Component {
     constructor(){
         super();
         this.state= {
@@ -13,7 +13,7 @@ class Listings extends Component {
       }
 
       componentDidMount(){
-          console.log('fetching')
+          console.log('fetching listingall')
           axios.get('http://localhost:3001/listing/')
           .then(res => {
            this.setState({
@@ -46,4 +46,4 @@ class Listings extends Component {
           }
         }
 
-      export default Listings;
+      export default ListingsAll;

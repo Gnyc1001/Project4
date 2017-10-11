@@ -89,7 +89,7 @@ class FavlistAdd extends Component {
             <label>Total Sqft: <input name="LivingArea" value={this.state.LivingArea}/></label>
             <label>Year Built: <input name="YearBuilt" value={this.state.YearBuilt}/></label>
             <label>Photos: <input name="media" value={this.state.media}/></label>
-            <label>User Comments: <input name="comments" type="text" placeholder="Description" value={this.state.comments}
+            <label>User Comments: <input name="comments" type="text" placeholder="Comments" value={this.state.comments}
                 onChange={this.favCreateChange}/></label>
             <label>Status: <select className="seenstatus" value={this.seenstatus} onChange={this.favCreateDropDown}>
                 <option value="" disabled selected>SELECT STATUS</option>

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Footer from './Footer'
+//show one favorite user listing
 
-class Listings extends Component {
+class FavListingShow extends Component {
     constructor(){
         super();
         this.state= {
@@ -14,7 +15,7 @@ class Listings extends Component {
 
       componentDidMount(){
           console.log('fetching')
-          axios.get('http://localhost:3001/listing/')
+          axios.get('http://localhost:3001/favlisting/')
           .then(res => {
            this.setState({
                eventApiData: res.data.data,
@@ -46,4 +47,4 @@ class Listings extends Component {
           }
         }
 
-      export default Listings;
+      export default FavListingShow;

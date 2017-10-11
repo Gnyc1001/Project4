@@ -35,7 +35,7 @@ app.listen(PORT, () => {
 //listing from api dataset
 const listingRoutes = require('./routes/listing-routes');
 app.use('listing',listingRoutes);
-//adding user favs
+// user favorites
 const favlistingRoutes = require('./routes/favlisting-routes');
 app.use('/favlisting', favlistingRoutes);
 
