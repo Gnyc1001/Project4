@@ -32,6 +32,10 @@ app.listen(PORT, () => {
 // const zipcodeRoutes = require('./routes/zipcode-routes');
 // app.use('/zipcode', zipcodeRoutes);
 
+//listing from api dataset
+const listingRoutes = require('./routes/listing-routes');
+app.use('listing',listingRoutes);
+//adding user favs
 const favlistingRoutes = require('./routes/favlisting-routes');
 app.use('/favlisting', favlistingRoutes);
 

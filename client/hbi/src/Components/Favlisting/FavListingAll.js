@@ -14,7 +14,7 @@ class Listings extends Component {
 
       componentDidMount(){
           console.log('fetching')
-          axios.get('http://localhost:3001/event/')
+          axios.get('http://localhost:3001/listing/')
           .then(res => {
            this.setState({
                eventApiData: res.data.data,
@@ -24,9 +24,9 @@ class Listings extends Component {
       }
 
       renderEvents(data){ //return twice because use of .map
-            return data.map(aEvent => {
+            return data.map(xListing => {
                 return (
-                    <Events key={aEvent.id} event={aEvent} />
+                    <Listings key={xListing.id} listing={xListing} />
 
                 );
                 
@@ -39,11 +39,11 @@ class Listings extends Component {
       
         render(){
             return(
-                <div ClassName="eventsList">
+                <div ClassName="Listings">
                     {this.state.eventApiDataLoaded ? this.renderEvents(this.state.eventApiData) : " "}
                 </div>
             )
           }
         }
-        
+
       export default Listings;

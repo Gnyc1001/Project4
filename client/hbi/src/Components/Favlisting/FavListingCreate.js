@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import Footer from './Footer'
+import Footer from '../Footer'
 
 class FavlistAdd extends Component {
     constructor() {
@@ -24,20 +24,28 @@ class FavlistAdd extends Component {
             };
         this.favCreateChange = this.favCreateChange.bind(this);
         this.favCreateSubmit = this.favCreateSubmit.bind(this);
+        this.favCreateDropDown = this.favCreateDropDown.bind(this);
+    }
+
+    componentDidMount(){
+        console.log(this.state)
     }
 
     favCreateChange(fav){
+        fav.preventDefault();
         const name = fav.target.name;
         const value = fav.target.value;
-        this.setState({
-            [name]: value,
-        });
+        this.setState({[name]: value});
+      }
+      handleGenreChoice(fav) {
+        fav.preventDefault();
+        this.setState({seenstatus: fav.target.value});
       }
 
       favCreateSubmit(fav){
         fav.preventDefault();
-      axios
-        .post('/favlisting', {
+      
+        let dataset = {
             UnparsedAddress: this.state.UnparsedAddress,
             CountyOrParish: this.state.CountyOrParish,
             PostalCode: this.state.PostalCode,
@@ -51,19 +59,25 @@ class FavlistAdd extends Component {
             media: this.state.media,
             comments: this.state.comments,
             seenstatus: this.state.seenstatus,
-        }).then(x =>{
+            user_id: this.state.user_id||0
+        }
+        console.log(dataset);
+        axios({
+            method: 'POST', url: `http://localhost:3001/favlisting`,
+            data:{dataset}        
+            }).then(x =>{
             console.log(x);
             this.setState({
-                newId: res.data.data.id,
                 fireRedirect: true,
             });
-        }).catch(err => console.log(err));
+        }).catch(err => console.log('error in create'));
         fav.target.reset();
     }
     render(){
         return (
+        <div>
          <div className="favAdd">
-            <form onSubmit={this.favCreateSubmit}>
+            <form onSubmit={(fav)=> {this.favCreateSubmit(fav)}}>
             <label>Address: <input name="UnparsedAddress" value={this.state.UnparsedAddress}/></label>
             <label>County: <input name="CountyOrParish" value={this.state.CountyOrParish}/></label>
             <label>Zip Code: <input name="PostalCode" value={this.state.PostalCode}/></label>
@@ -77,13 +91,19 @@ class FavlistAdd extends Component {
             <label>Photos: <input name="media" value={this.state.media}/></label>
             <label>User Comments: <input name="comments" type="text" placeholder="Description" value={this.state.comments}
                 onChange={this.favCreateChange}/></label>
-            <label>Status: <input name="seenstatus" type="text" placeholder="Status" value={this.state.seenstatus} 
-                onChange={this.favCreateChange}/></label>
+            <label>Status: <select className="seenstatus" value={this.seenstatus} onChange={this.favCreateDropDown}>
+                <option value="" disabled selected>SELECT STATUS</option>
+                <option value="Seen">Seen</option>
+                <option value="Not Seen">Not Seen</option>
+                <option value="Requested More Info">Requested More Info</option>
+                </select></label>
+                <input className="submit" type="submit" value="Add to Favorites"/>
             </form>
-            {this.state.fireRedirect ? <Redirect push to={`favlistadd/${this.state.newId}`}/> 
+            {this.state.fireRedirect ? <Redirect push to={`FavListingShow/${this.state.newId}`}/> 
             :''}
          </div>
-         <footer />
+         <Footer />
+         </div>
         );
       }
     }
